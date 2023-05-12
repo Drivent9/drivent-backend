@@ -16,6 +16,39 @@ async function main() {
     });
   }
 
+  let TicketType = await prisma.ticketType.findFirst();
+  if (!TicketType) {
+    const TicketType1 = await prisma.ticketType.create({
+      data: {
+        name: "Remoto",
+        price: 250,
+        isRemote: true,
+        includesHotel: false,
+        createdAt: dayjs().toDate(),
+      },
+    });
+
+    const TicketType2 = await prisma.ticketType.create({
+      data: {
+        name: "Presencial",
+        price: 800,
+        isRemote: false,
+        includesHotel: false,
+        createdAt: dayjs().toDate(),
+      },
+    });
+    
+    const TicketType3 = await prisma.ticketType.create({
+      data: {
+        name: "Presencial",
+        price: 1300,
+        isRemote: false,
+        includesHotel: true,
+        createdAt: dayjs().toDate(),
+      },
+    });
+  }
+
   console.log({ event });
 }
 
