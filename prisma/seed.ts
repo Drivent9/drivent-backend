@@ -4,8 +4,9 @@ const prisma = new PrismaClient();
 
 async function main() {
   let event = await prisma.event.findFirst();
-  if (!event) {
-    event = await prisma.event.create({
+  if (event) await prisma.event.deleteMany({}); 
+
+  const event1 = await prisma.event.create({
       data: {
         title: "Driven.t",
         logoImageUrl: "https://files.driveneducation.com.br/images/logo-rounded.png",
@@ -14,14 +15,15 @@ async function main() {
         endsAt: dayjs().add(21, "days").toDate(),
       },
     });
-  }
+  
 
   let TicketType = await prisma.ticketType.findFirst();
-  if (!TicketType) {
+  if (TicketType) await prisma.ticketType.deleteMany({});
+  
     const TicketType1 = await prisma.ticketType.create({
       data: {
-        name: "Remoto",
-        price: 250,
+        name: "Online",
+        price: 100,
         isRemote: true,
         includesHotel: false,
         createdAt: dayjs().toDate(),
@@ -31,25 +33,25 @@ async function main() {
     const TicketType2 = await prisma.ticketType.create({
       data: {
         name: "Presencial",
-        price: 800,
+        price: 250,
         isRemote: false,
         includesHotel: false,
         createdAt: dayjs().toDate(),
       },
     });
-    
+
     const TicketType3 = await prisma.ticketType.create({
       data: {
         name: "Presencial",
-        price: 1300,
+        price: 600,
         isRemote: false,
         includesHotel: true,
         createdAt: dayjs().toDate(),
       },
     });
-  }
+  
 
-  console.log({ event });
+  console.log(`Ticket types e evento criado`, event1);
 }
 
 main()
