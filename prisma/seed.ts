@@ -96,7 +96,7 @@ async function main() {
     }
   }
 
-  console.log(`Ticket types e evento criado`, event1);
+  console.log(`Evento, TicketTypes, Hotels e rooms criados`, event1);
 }
 
 main()
