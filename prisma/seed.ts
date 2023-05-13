@@ -84,10 +84,23 @@ async function main() {
 
   for (let hotel of hotels) {
     const roomCount = Math.floor(Math.random() * 17) + 4;
+    const roomRanges = [
+      [101, 110],
+      [201, 210],
+      [301, 310],
+      [401, 410],
+      [501, 510],
+    ];
+    const roomRangesCount = roomRanges.length;
+
     for (let i = 1; i <= roomCount; i++) {
+      const roomRangeIndex = Math.floor(Math.random() * roomRangesCount);
+      const [minRoomNumber, maxRoomNumber] = roomRanges[roomRangeIndex];
+      const roomNumber = Math.floor(Math.random() * (maxRoomNumber - minRoomNumber + 1)) + minRoomNumber;
+
       await prisma.room.create({
         data: {
-          name: `Room ${i}`,
+          name: `${roomNumber}`,
           capacity: Math.floor(Math.random() * 3) + 1,
           hotelId: hotel.id,
           createdAt: dayjs().toDate(),
