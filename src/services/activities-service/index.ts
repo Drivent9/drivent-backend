@@ -1,7 +1,26 @@
-// Descomente e preencha com o que for necessário
-// import {  } from '@prisma/client';
-// import {  } from '@/errors';
-// import activitiesRepository from '@/repositories/activities-repository';
+import { notFoundError } from '@/errors';
+import { cannotListActivitiesError } from '@/errors/cannot-list-activities-error';
+import activitiesRepository from '@/repositories/activities-repository';
+import enrollmentRepository from '@/repositories/enrollment-repository';
+import ticketsRepository from '@/repositories/tickets-repository';
+
+async function getActivities(userId: number) {
+  const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
+  if (!enrollment) {
+    throw notFoundError();
+  }
+  const ticket = await ticketsRepository.findTicketByEnrollmentId(enrollment.id);
+
+  if (!ticket || ticket.status === 'RESERVED' || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
+    throw cannotListActivitiesError();
+  }
+
+  const activities = await activitiesRepository.findActivities();
+  if (!activities || activities.length === 0) {
+    throw notFoundError();
+  }
+  return activities;
+}
 
 async function bookActivity() {
   return 0;
@@ -12,10 +31,6 @@ async function createActivity() {
 }
 
 async function createPlace() {
-  return 0;
-}
-
-async function getActivities() {
   return 0;
 }
 
