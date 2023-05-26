@@ -38,12 +38,23 @@ async function createSession(userId: number) {
   return token;
 }
 
+async function createToken(userId: number) {
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET);
+
+  return {
+    user: userId,
+    token
+  };
+}
+
 async function validatePasswordOrFail(password: string, userPassword: string) {
   const isPasswordValid = await bcrypt.compare(password, userPassword);
   if (!isPasswordValid) throw invalidCredentialsError();
 }
 
 export type SignInParams = Pick<User, 'email' | 'password'>;
+
+export type SignInGitHub = Pick<User, 'email'>;
 
 type SignInResult = {
   user: Pick<User, 'id' | 'email'>;
@@ -54,6 +65,7 @@ type GetUserOrFailResult = Pick<User, 'id' | 'email' | 'password'>;
 
 const authenticationService = {
   signIn,
+  createToken
 };
 
 export default authenticationService;
