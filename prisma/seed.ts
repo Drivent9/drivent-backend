@@ -109,7 +109,182 @@ async function main() {
     }
   }
 
-  console.log(`Evento, TicketTypes, Hotels e rooms criados`, event1);
+  const place1 = await prisma.activityPlace.create({
+    data: {
+      name: 'Auditório Principal',
+    }
+  })
+  const place2 = await prisma.activityPlace.create({
+    data: {
+      name: 'Auditório Lateral',
+    }
+  })
+  const place3 = await prisma.activityPlace.create({
+    data: {
+      name: 'Sala de Workshop',
+    }
+  })
+
+  let activity = await prisma.activity.findFirst();
+  if (activity) await prisma.activity.deleteMany({});
+
+  //Day 1
+  await prisma.activity.create({
+    data: {
+      title: 'Minecraft: montando o PC ideal',
+      capacity: 27,
+      activityPlaceId: place1.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-20 09:00:00'),
+      endsAt: new Date('2023-10-20 10:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'LoL: montando o PC ideal',
+      capacity: 0,
+      activityPlaceId: place1.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-20 10:00:00'),
+      endsAt: new Date('2023-10-20 11:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra x',
+      capacity: 27,
+      activityPlaceId: place2.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-20 09:00:00'),
+      endsAt: new Date('2023-10-20 11:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra y',
+      capacity: 27,
+      activityPlaceId: place3.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-20 09:00:00'),
+      endsAt: new Date('2023-10-20 10:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra z',
+      capacity: 0,
+      activityPlaceId: place3.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-20 10:00:00'),
+      endsAt: new Date('2023-10-20 11:00:00'),
+    }
+  })
+
+  // Day 2
+  await prisma.activity.create({
+    data: {
+      title: 'Fortnite: montando o PC ideal',
+      capacity: 27,
+      activityPlaceId: place1.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-21 09:00:00'),
+      endsAt: new Date('2023-10-21 10:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Free Fire: montando o PC ideal',
+      capacity: 0,
+      activityPlaceId: place1.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-21 10:00:00'),
+      endsAt: new Date('2023-10-21 11:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra a',
+      capacity: 27,
+      activityPlaceId: place2.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-21 09:00:00'),
+      endsAt: new Date('2023-10-21 11:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra b',
+      capacity: 27,
+      activityPlaceId: place3.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-21 09:00:00'),
+      endsAt: new Date('2023-10-21 10:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra c',
+      capacity: 0,
+      activityPlaceId: place3.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-21 10:00:00'),
+      endsAt: new Date('2023-10-21 11:00:00'),
+    }
+  })
+
+  //Day 3
+  await prisma.activity.create({
+    data: {
+      title: 'Genshin Impact: montando o PC ideal',
+      capacity: 27,
+      activityPlaceId: place1.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-22 09:00:00'),
+      endsAt: new Date('2023-10-22 10:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'TEKKEN 7: montando o PC ideal',
+      capacity: 0,
+      activityPlaceId: place1.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-22 10:00:00'),
+      endsAt: new Date('2023-10-22 11:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra d',
+      capacity: 27,
+      activityPlaceId: place2.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-22 09:00:00'),
+      endsAt: new Date('2023-10-22 11:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra e',
+      capacity: 27,
+      activityPlaceId: place3.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-22 09:00:00'),
+      endsAt: new Date('2023-10-22 10:00:00'),
+    }
+  })
+  await prisma.activity.create({
+    data: {
+      title: 'Palestra f',
+      capacity: 0,
+      activityPlaceId: place3.id,
+      eventId: event1.id,
+      startsAt: new Date('2023-10-22 10:00:00'),
+      endsAt: new Date('2023-10-22 11:00:00'),
+    }
+  })
+
+  console.log(`Evento, TicketTypes, Hotels, Rooms, ActivityPlaces e Activities criados`, event1);
 }
 
 main()
