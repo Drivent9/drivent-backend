@@ -4,8 +4,9 @@ import { AuthenticatedRequest } from '@/middlewares';
 import activityService from '@/services/activities-service';
 
 export async function getActivities(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
+  const { userId } = req;
   try {
-    const activityList = await activityService.getActivities();
+    const activityList = await activityService.getActivities(userId);
     return res.status(httpStatus.OK).send(activityList);
   } catch (e) {
     next(e);

@@ -146,8 +146,8 @@ model Activity {
   eventId         Int
   startsAt        DateTime          @db.Timestamp(6)
   endsAt          DateTime          @db.Timestamp(6)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
   ActivityPlace   ActivityPlace     @relation(fields: [activityPlaceId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   Event           Event             @relation(fields: [eventId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   ActivityBooking ActivityBooking[]
@@ -157,18 +157,18 @@ model ActivityBooking {
   id         Int      @id @default(autoincrement())
   activityId Int
   userId     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   Activity   Activity @relation(fields: [activityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   User       User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model ActivityPlace {
-  id       Int        @id @default(autoincrement())
-  name     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Activity Activity[]
+  id        Int        @id @default(autoincrement())
+  name      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Activity  Activity[]
 }
 
 enum TicketStatus {

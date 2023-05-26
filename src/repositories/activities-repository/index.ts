@@ -1,5 +1,11 @@
 import { prisma } from '@/config';
 
-const activitiesRepository = {};
+async function findActivities() {
+  return prisma.activity.findMany();
+}
+
+const activitiesRepository = {
+  findActivities,
+};
 
 export default activitiesRepository;
