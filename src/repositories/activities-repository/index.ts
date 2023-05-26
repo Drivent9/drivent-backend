@@ -1,7 +1,11 @@
 import { prisma } from '@/config';
 
 async function findActivities() {
-  return prisma.activity.findMany();
+  return prisma.activity.findMany({
+    include: {
+      ActivityPlace: true,
+    },
+  });
 }
 
 const activitiesRepository = {
