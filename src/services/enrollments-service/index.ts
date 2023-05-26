@@ -31,8 +31,10 @@ async function getOneWithAddressByUserId(userId: number): Promise<GetOneWithAddr
 
   if (!enrollmentWithAddress) throw notFoundError();
 
-  const [firstAddress] = enrollmentWithAddress.Address;
-  const address = getFirstAddress(firstAddress);
+  // const [firstAddress] = enrollmentWithAddress.Address;
+  // const address = getFirstAddress(firstAddress);
+  const address = enrollmentWithAddress.Address; //linha que substitui os comentarios
+  if (!address) throw notFoundError(); //linha que substitui os comentarios
 
   return {
     ...exclude(enrollmentWithAddress, 'userId', 'createdAt', 'updatedAt', 'Address'),
@@ -42,13 +44,13 @@ async function getOneWithAddressByUserId(userId: number): Promise<GetOneWithAddr
 
 type GetOneWithAddressByUserIdResult = Omit<Enrollment, 'userId' | 'createdAt' | 'updatedAt'>;
 
-function getFirstAddress(firstAddress: Address): GetAddressResult {
-  if (!firstAddress) return null;
+// function getFirstAddress(firstAddress: Address): GetAddressResult {
+//   if (!firstAddress) return null;
 
-  return exclude(firstAddress, 'createdAt', 'updatedAt', 'enrollmentId');
-}
+//   return exclude(firstAddress, 'createdAt', 'updatedAt', 'enrollmentId');
+// }
 
-type GetAddressResult = Omit<Address, 'createdAt' | 'updatedAt' | 'enrollmentId'>;
+// type GetAddressResult = Omit<Address, 'createdAt' | 'updatedAt' | 'enrollmentId'>;
 
 async function createOrUpdateEnrollmentWithAddress(params: CreateOrUpdateEnrollmentWithAddress) {
   const enrollment = exclude(params, 'address');
