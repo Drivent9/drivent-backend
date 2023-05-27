@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import httpStatus from 'http-status';
 import { AuthenticatedRequest } from '@/middlewares';
 import activityService from '@/services/activities-service';
+import { InputActivityBody } from '@/protocols';
 
 export async function getActivities(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
   const { userId } = req;
@@ -32,9 +33,12 @@ export async function createPlace(req: AuthenticatedRequest, res: Response, next
 }
 
 export async function bookActivity(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
+  const { userId } = req;
+  const { activityId } = req.body as InputActivityBody;
+
   try {
-    const booking = await activityService.bookActivity();
-    return res.status(httpStatus.CREATED).send(booking);
+    const booking = await activityService.bookActivity(activityId, userId);
+    return res.status(httpStatus.CREATED).send(booking.id);
   } catch (e) {
     next(e);
   }

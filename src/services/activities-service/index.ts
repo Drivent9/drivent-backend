@@ -1,4 +1,5 @@
-import { notFoundError } from '@/errors';
+import { Activity, ActivityBooking } from '.prisma/client';
+import { conflictError, notFoundError } from '@/errors';
 import { cannotListActivitiesError } from '@/errors/cannot-list-activities-error';
 import activitiesRepository from '@/repositories/activities-repository';
 import enrollmentRepository from '@/repositories/enrollment-repository';
@@ -22,8 +23,19 @@ async function getActivities(userId: number) {
   return activities;
 }
 
-async function bookActivity() {
-  return 0;
+async function bookActivity(activityId: number, userId: number) {
+  const activityToRegister: Activity = await activitiesRepository.findActivityById(activityId);
+  if (!activityToRegister) throw notFoundError();
+
+  const userActivities: ActivityBooking[] = await activitiesRepository.findAllActivityBookings(userId);
+  for (let i = 0; i < userActivities.length; i++) {
+    const activity: Activity = await activitiesRepository.findActivityById(userActivities[i].id);
+    if (activity.startsAt === activityToRegister.startsAt)
+      throw conflictError('User cannot participate on two events at the same time!');
+  }
+
+  const activityBooking: ActivityBooking = await activitiesRepository.createActivityBooking(activityId, userId);
+  return activityBooking;
 }
 
 async function createActivity() {
