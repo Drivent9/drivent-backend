@@ -76,7 +76,7 @@ export function findTicketByEnrollmentIdReturn() {
 }
 
 export function enrollmentWithAddressReturn() {
-  const expected: Enrollment & { Address: Address[] } = {
+  const expected: Enrollment & { Address: Address } = {
     id: 1,
     name: 'John Doe',
     cpf: '12345678901',
@@ -85,21 +85,19 @@ export function enrollmentWithAddressReturn() {
     userId: 1,
     createdAt: new Date(),
     updatedAt: new Date(),
-    Address: [
-      {
-        id: 1,
-        cep: '12345678',
-        street: 'Main Street',
-        city: 'New York',
-        state: 'NY',
-        number: '123',
-        neighborhood: 'Downtown',
-        addressDetail: 'Apartment 456',
-        enrollmentId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ],
+    Address: {
+      id: 1,
+      cep: '12345678',
+      street: 'Main Street',
+      city: 'New York',
+      state: 'NY',
+      number: '123',
+      neighborhood: 'Downtown',
+      addressDetail: 'Apartment 456',
+      enrollmentId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   };
 
   return expected;

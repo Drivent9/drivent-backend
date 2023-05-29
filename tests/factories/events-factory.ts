@@ -14,3 +14,19 @@ export function createEvent(params: Partial<Event> = {}): Promise<Event> {
     },
   });
 }
+
+export function getEvent() {
+  const expected: Event = 
+    {
+      id: 1,
+      title: 'Evento',
+      backgroundImageUrl: 'https://www.example.com/images/fake-image.jpg',
+      logoImageUrl: 'https://www.example.com/images/fake-image.jpg',
+      startsAt: new Date(),
+      endsAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }  
+
+  return expected;
+}

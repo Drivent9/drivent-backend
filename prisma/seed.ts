@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 const prisma = new PrismaClient();
 
 async function main() {
+  let activity = await prisma.activity.findFirst();
+  if (activity) await prisma.activity.deleteMany({});
   let event = await prisma.event.findFirst();
   if (event) await prisma.event.deleteMany({});
 
@@ -125,8 +127,6 @@ async function main() {
     }
   })
 
-  let activity = await prisma.activity.findFirst();
-  if (activity) await prisma.activity.deleteMany({});
 
   //Day 1
   await prisma.activity.create({
