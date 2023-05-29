@@ -4,7 +4,10 @@ const prisma = new PrismaClient();
 
 async function main() {
   let activity = await prisma.activity.findFirst();
-  if (activity) await prisma.activity.deleteMany({});
+  if (activity) {
+    await prisma.activity.deleteMany({});
+    await prisma.activityPlace.deleteMany({});
+  }
   let event = await prisma.event.findFirst();
   if (event) await prisma.event.deleteMany({});
 
