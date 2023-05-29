@@ -148,8 +148,8 @@ model Activity {
   endsAt          DateTime          @db.Timestamp(6)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
-  ActivityPlace   ActivityPlace     @relation(fields: [activityPlaceId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Event           Event             @relation(fields: [eventId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ActivityPlace   ActivityPlace     @relation(fields: [activityPlaceId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  Event           Event             @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   ActivityBooking ActivityBooking[]
 }
 
@@ -159,8 +159,8 @@ model ActivityBooking {
   userId     Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  Activity   Activity @relation(fields: [activityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User       User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Activity   Activity @relation(fields: [activityId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  User       User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model ActivityPlace {

@@ -20,7 +20,7 @@ async function findActivities() {
 }
 
 async function findActivityById(activityId: number): Promise<Activity> {
-  return prisma.activity.findUnique({
+  return prisma.activity.findFirst({
     where: {
       id: activityId,
     },

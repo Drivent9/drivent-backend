@@ -24,29 +24,34 @@ async function getActivities(userId: number) {
 }
 
 async function bookActivity(activityId: number, userId: number) {
-  
+
   const activityToRegister: Activity = await activitiesRepository.findActivityById(activityId);
   if (!activityToRegister) throw notFoundError();
 
   const userActivities: ActivityBooking[] = await activitiesRepository.findAllActivityBookings(userId);
+  
   for (let i = 0; i < userActivities.length; i++) {
-    const activity: Activity = await activitiesRepository.findActivityById(userActivities[i].id);
-    if (activity.startsAt === activityToRegister.startsAt)
-      throw conflictError('User cannot participate on two events at the same time!');
+    
+    const activity: Activity = await activitiesRepository.findActivityById(userActivities[i].activityId);
+
+
+    if (activity.startsAt.setSeconds(0,0) === activityToRegister.startsAt.setSeconds(0,0)) {
+       throw conflictError('User cannot participate on two events at the same time!'); 
+      }
+    }
+
+    const activityBooking: ActivityBooking = await activitiesRepository.createActivityBooking(activityId, userId);
+    return activityBooking;
   }
 
-  const activityBooking: ActivityBooking = await activitiesRepository.createActivityBooking(activityId, userId);
-  return activityBooking;
-}
+  async function createActivity() {
+    return 0;
+  }
 
-async function createActivity() {
-  return 0;
-}
+  async function createPlace() {
+    return 0;
+  }
 
-async function createPlace() {
-  return 0;
-}
+  const activityService = { bookActivity, createActivity, createPlace, getActivities };
 
-const activityService = { bookActivity, createActivity, createPlace, getActivities };
-
-export default activityService;
+  export default activityService;
