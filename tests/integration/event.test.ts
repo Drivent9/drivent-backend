@@ -3,6 +3,7 @@ import supertest from 'supertest';
 import { createEvent } from '../factories';
 import { cleanDb } from '../helpers';
 import app, { init } from '@/app';
+import { Event } from '.prisma/client';
 
 beforeAll(async () => {
   await init();
@@ -34,3 +35,4 @@ describe('GET /event', () => {
     });
   });
 });
+
