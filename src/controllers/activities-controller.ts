@@ -38,7 +38,7 @@ export async function bookActivity(req: AuthenticatedRequest, res: Response, nex
 
   try {
     const booking = await activityService.bookActivity(activityId, userId);
-    return res.status(httpStatus.CREATED).send(booking.id);
+    return res.status(httpStatus.CREATED).send(booking);
   } catch (e) {
     next(e);
   }

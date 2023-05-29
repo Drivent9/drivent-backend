@@ -24,6 +24,7 @@ async function getActivities(userId: number) {
 }
 
 async function bookActivity(activityId: number, userId: number) {
+  
   const activityToRegister: Activity = await activitiesRepository.findActivityById(activityId);
   if (!activityToRegister) throw notFoundError();
 

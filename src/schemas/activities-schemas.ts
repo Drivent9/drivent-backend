@@ -12,6 +12,5 @@ export const activitySchema = Joi.object({
 });
 
 export const activityBookingSchema = Joi.object({
-  activityId: Joi.number().min(1).required(),
-  userId: Joi.number().min(1).required(),
+  activityId: Joi.number().min(1).required()
 });
