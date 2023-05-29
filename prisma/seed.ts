@@ -132,14 +132,16 @@ async function main() {
 
 
   //Day 1
+  const hour = 9;
+  let day = 7;
   await prisma.activity.create({
     data: {
       title: 'Minecraft: montando o PC ideal',
       capacity: 27,
       activityPlaceId: place1.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-20 09:00:00'),
-      endsAt: new Date('2023-10-20 10:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
     }
   })
   await prisma.activity.create({
@@ -148,8 +150,8 @@ async function main() {
       capacity: 0,
       activityPlaceId: place1.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-20 10:00:00'),
-      endsAt: new Date('2023-10-20 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
   await prisma.activity.create({
@@ -158,8 +160,8 @@ async function main() {
       capacity: 27,
       activityPlaceId: place2.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-20 09:00:00'),
-      endsAt: new Date('2023-10-20 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
   await prisma.activity.create({
@@ -168,8 +170,8 @@ async function main() {
       capacity: 27,
       activityPlaceId: place3.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-20 09:00:00'),
-      endsAt: new Date('2023-10-20 10:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
     }
   })
   await prisma.activity.create({
@@ -178,20 +180,21 @@ async function main() {
       capacity: 0,
       activityPlaceId: place3.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-20 10:00:00'),
-      endsAt: new Date('2023-10-20 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
 
   // Day 2
+  day++;
   await prisma.activity.create({
     data: {
       title: 'Fortnite: montando o PC ideal',
       capacity: 27,
       activityPlaceId: place1.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-21 09:00:00'),
-      endsAt: new Date('2023-10-21 10:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
     }
   })
   await prisma.activity.create({
@@ -200,8 +203,8 @@ async function main() {
       capacity: 0,
       activityPlaceId: place1.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-21 10:00:00'),
-      endsAt: new Date('2023-10-21 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
   await prisma.activity.create({
@@ -210,8 +213,8 @@ async function main() {
       capacity: 27,
       activityPlaceId: place2.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-21 09:00:00'),
-      endsAt: new Date('2023-10-21 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
   await prisma.activity.create({
@@ -220,8 +223,8 @@ async function main() {
       capacity: 27,
       activityPlaceId: place3.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-21 09:00:00'),
-      endsAt: new Date('2023-10-21 10:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
     }
   })
   await prisma.activity.create({
@@ -230,20 +233,21 @@ async function main() {
       capacity: 0,
       activityPlaceId: place3.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-21 10:00:00'),
-      endsAt: new Date('2023-10-21 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
 
   //Day 3
+  day++;
   await prisma.activity.create({
     data: {
       title: 'Genshin Impact: montando o PC ideal',
       capacity: 27,
       activityPlaceId: place1.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-22 09:00:00'),
-      endsAt: new Date('2023-10-22 10:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
     }
   })
   await prisma.activity.create({
@@ -252,8 +256,8 @@ async function main() {
       capacity: 0,
       activityPlaceId: place1.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-22 10:00:00'),
-      endsAt: new Date('2023-10-22 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
   await prisma.activity.create({
@@ -262,8 +266,8 @@ async function main() {
       capacity: 27,
       activityPlaceId: place2.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-22 09:00:00'),
-      endsAt: new Date('2023-10-22 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
   await prisma.activity.create({
@@ -272,8 +276,8 @@ async function main() {
       capacity: 27,
       activityPlaceId: place3.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-22 09:00:00'),
-      endsAt: new Date('2023-10-22 10:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
     }
   })
   await prisma.activity.create({
@@ -282,8 +286,8 @@ async function main() {
       capacity: 0,
       activityPlaceId: place3.id,
       eventId: event1.id,
-      startsAt: new Date('2023-10-22 10:00:00'),
-      endsAt: new Date('2023-10-22 11:00:00'),
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
     }
   })
 
