@@ -15,21 +15,20 @@ export async function signInPost(req: Request, res: Response) {
   }
 }
 
-
 export async function signInGitHub(req: Request, res: Response) {
-  const {code} = req.body
+  const { code } = req.body;
 
   try {
     const userData = await exchangeCodeForAcessToken(code);
     console.log(userData);
-    
+
     const result = await authenticationService.createToken(userData.id);
     console.log(result);
 
     return res.status(httpStatus.OK).send(result);
   } catch (error) {
     console.log(error);
-    
+
     return res.status(httpStatus.UNAUTHORIZED).send({});
   }
 }
